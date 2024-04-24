@@ -13,8 +13,9 @@ enum SceneID
 {
 	Title,
 	Play,
-	GameOver,
-	Clear,
+	Result,
 
 	LOOP
 };
+
+extern SceneID g_current_scene_ID;
