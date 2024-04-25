@@ -3,6 +3,7 @@
 #include "Frame/Frame.h"
 #include "Input/Input.h"
 #include "Collision/Collision.h"
+#include "Scene/SceneManager.h"
 
 SceneID g_current_scene_ID;
 
@@ -20,6 +21,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//-----------------------------------------
 
 	InitGame();
+	SceneManager scene;
 
 	//-----------------------------------------
 	//ゲームメインループ
@@ -63,7 +65,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			//ここにゲームの本体を書く
 			//-----------------------------------------
 
-
+			scene.Main();
 
 			// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 			//ループの終わりに
@@ -102,7 +104,7 @@ void InitGame()
 
 	Input::InitInput();
 
-	g_current_scene_ID = Title;
+	g_current_scene_ID = Play;
 }
 
 void FinGame()
