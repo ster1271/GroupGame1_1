@@ -44,18 +44,27 @@ void Player::Fin()
 
 void Player::MoveX()
 {
-	if (Input::IsKeyPush(KEY_INPUT_A)) {
+	if (Input::IsKeyDown(KEY_INPUT_A)) {
 		m_move_power.x -= PLAYER_MOVE_SPEED;
 	}
-	if (Input::IsKeyPush(KEY_INPUT_D)){
+	if (Input::IsKeyDown(KEY_INPUT_D)){
 		m_move_power.x += PLAYER_MOVE_SPEED;
 	}
 
+	m_pos.x += m_move_power.x;
 	if (m_move_power.x < 0) {
-
+		m_move_power.x += PLAYER_MOVE_SPEED - 1.0f;
+		if (m_move_power.x < -PLAYER_MAX_SPEED)
+			m_move_power.x = -PLAYER_MAX_SPEED;
+		if (m_move_power.x > 0)
+			m_move_power.x = 0;
 	}
 	else if (m_move_power.x > 0) {
-
+		m_move_power.x -= PLAYER_MOVE_SPEED - 1.0f;
+		if (m_move_power.x > PLAYER_MAX_SPEED)
+			m_move_power.x = PLAYER_MAX_SPEED;
+		if (m_move_power.x < 0)
+			m_move_power.x = 0;
 	}
 }
 
