@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../../Input/Input.h"
+#include "../../Screen/Screen.h"
 
 Player::Player()
 {
@@ -35,7 +36,7 @@ void Player::Step()
 }
 void Player::Draw()
 {
-	DrawGraph((int)m_pos.x, (int)m_pos.y, m_handle[0], true);
+	DrawGraph((int)m_pos.x - Screen::GetScreenPosX(), (int)m_pos.y, m_handle[0], true);
 }
 void Player::Fin()
 {

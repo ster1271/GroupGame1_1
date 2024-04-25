@@ -2,12 +2,14 @@
 #include "../Draw2D.h"
 
 constexpr char ENEMY_HANDLE_PATH[] = { "Data/Enemy/Enemy(‰¼).png" };
-constexpr int ENEMY_MAX_NUM = 1;                    //“G‚Ì”
+
+constexpr int ENEMY_COLLISION_SIZE = 60;
 
 //“Gî•ñ\‘¢‘Ì
 class EnemyInfo:public Draw2D
 {
 private:
+	static int m_enemy_index;	//¶‚©‚ç”‚¦‚Ä‰½‘Ì–Ú‚Ì“G‚©
 
 public:
 	EnemyInfo();
@@ -17,6 +19,6 @@ public:
 
 	void DrawEnemy();
 
-	void SpawnEnemy(VECTOR pos);
+	void SpawnEnemy();
 	void DeathEnemy() { m_isUse = false; }
 };

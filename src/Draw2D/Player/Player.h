@@ -4,7 +4,7 @@
 //ハンドルパス
 constexpr char PLAYER_HANDLE_PATH[64] = { "data/Player/Player.png" };
 //プレイヤーの初期座標
-constexpr VECTOR PLAYER_DEFAULT_POS = { 300.0f,0.0f,0.0f };
+constexpr VECTOR PLAYER_DEFAULT_POS = { 100.0f,360.0f,0.0f };
 //連続ジャンプの初期最大数
 constexpr int MAX_JUMP_NUM = 1;
 
