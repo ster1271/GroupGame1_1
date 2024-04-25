@@ -1,25 +1,31 @@
 #include "DxLib.h"   //2309405@‰F‰ê’Ë’g‹I
 #include"Enemy.h"
 
-#define ENEMY_PATH "Data/Enemy/Enemy(‰¼).png"
-#define ENEMY_MAX_NUM   (1)                      //“G‚Ì”
+EnemyInfo::EnemyInfo()
+{
 
-EnemyInfo enemyInfo[ENEMY_MAX_NUM] = { 0 };
-
-void InitEnemy() {
-	//“G‰Šú‰»
-	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-		//“G1
-		enemyInfo[i].handle = LoadGraph(ENEMY_PATH);
-		enemyInfo[i].x = { 0 };
-		enemyInfo[i].y = { 0 };
-	}
+}
+EnemyInfo::~EnemyInfo()
+{
+	Draw2D::~Draw2D();
 }
 
-void DrawEnemy()
+void EnemyInfo::InitEnemy(VECTOR pos) {
+	//“G‰Šú‰»
+
+	LoadHandle((char*)ENEMY_HANDLE_PATH, 1, 1, 1, 60, 60);
+
+	m_pos = pos;
+}
+
+void EnemyInfo::DrawEnemy()
 {
 	//“G•`‰æ
-	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-		DrawRotaGraph(enemyInfo[i].x, enemyInfo[i].y, 1.0f, 0.0, enemyInfo[i].handle, true);
-	}
+	DrawGraph(m_pos.x, m_pos.y, m_handle[0], true);
+}
+
+void EnemyInfo::SpawnEnemy(VECTOR pos)
+{
+	m_pos = pos;
+	m_isUse = true;
 }

@@ -53,14 +53,14 @@ void Player::MoveX()
 
 	m_pos.x += m_move_power.x;
 	if (m_move_power.x < 0) {
-		m_move_power.x += PLAYER_MOVE_SPEED - 1.0f;
+		m_move_power.x += PLAYER_MOVE_SPEED - 3.0f;
 		if (m_move_power.x < -PLAYER_MAX_SPEED)
 			m_move_power.x = -PLAYER_MAX_SPEED;
 		if (m_move_power.x > 0)
 			m_move_power.x = 0;
 	}
 	else if (m_move_power.x > 0) {
-		m_move_power.x -= PLAYER_MOVE_SPEED - 1.0f;
+		m_move_power.x -= PLAYER_MOVE_SPEED - 3.0f;
 		if (m_move_power.x > PLAYER_MAX_SPEED)
 			m_move_power.x = PLAYER_MAX_SPEED;
 		if (m_move_power.x < 0)

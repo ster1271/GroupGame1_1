@@ -1,13 +1,22 @@
 #pragma once
+#include "../Draw2D.h"
+
+constexpr char ENEMY_HANDLE_PATH[] = { "Data/Enemy/Enemy(âº).png" };
+constexpr int ENEMY_MAX_NUM = 1;                    //ìGÇÃêî
 
 //ìGèÓïÒç\ë¢ëÃ
-struct EnemyInfo
+class EnemyInfo:public Draw2D
 {
-	int handle;
-	int x;
-	int y;
+private:
+
+public:
+	EnemyInfo();
+	~EnemyInfo();
+
+	void InitEnemy(VECTOR pos);
+
+	void DrawEnemy();
+
+	void SpawnEnemy(VECTOR pos);
+	void DeathEnemy() { m_isUse = false; }
 };
-
-void InitEnemy();
-
-void DrawEnemy();
