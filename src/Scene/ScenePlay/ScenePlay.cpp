@@ -1,6 +1,8 @@
 #include "DxLib.h"
+#include "../../Common.h"
 #include "ScenePlay.h"
 #include "../../Screen/Screen.h"
+#include "../../GameCollision/GameCollision.h"
 
 void ScenePlay::Init()
 {
@@ -14,6 +16,11 @@ void ScenePlay::Init()
 void ScenePlay::Step()
 {
 	player_info.Step();
+
+	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+		CollisionPlayerAttackToEnemy(player_info, enemy_info[i]);
+	}
+
 	Screen::Step(player_info.GetPos());
 
 	//画面外(左)に行ったら使用フラグを折る
@@ -27,15 +34,16 @@ void ScenePlay::Step()
 	if (Screen::m_screex_pos_x - Screen::m_reference_point >= 400) {
 		Screen::m_reference_point += 400;
 		for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-			if (enemy_info[i].GetPos().x <= -ENEMY_COLLISION_SIZE) {
-
-			}
 
 			if (!enemy_info[i].GetIsUse()) {
 				enemy_info[i].SpawnEnemy();
 				break;
 			}
 		}
+	}
+
+	if (player_info.GetPos().y > SCREEN_SIZE_Y) {
+		g_current_scene_ID = Result;
 	}
 }
 

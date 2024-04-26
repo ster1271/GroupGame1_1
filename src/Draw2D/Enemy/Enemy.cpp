@@ -21,21 +21,26 @@ void EnemyInfo::InitEnemy(VECTOR pos) {
 	m_pos = pos;
 
 	m_enemy_index = 5;
+
+	m_coliision_size = { (float)ENEMY_COLLISION_SIZE ,(float)ENEMY_COLLISION_SIZE ,0 };
 }
 
 void EnemyInfo::DrawEnemy()
 {
 	//“G•`‰æ
-	DrawGraph(m_pos.x - Screen::GetScreenPosX(), m_pos.y, m_handle[0], true);
+	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x),
+			(int)(m_pos.y),
+			m_handle[0],
+			true);
 }
 
 void EnemyInfo::SpawnEnemy()
 {
 	VECTOR pos;
 
-	pos.x = 400 * m_enemy_index;
-	pos.y = GetRand(100) + 310;
-	pos.z = 0;
+	pos.x = (float)(400 * m_enemy_index);
+	pos.y = (float)(GetRand(100) + 310);
+	pos.z = 0.0f;
 
 	m_enemy_index++;
 

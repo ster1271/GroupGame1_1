@@ -10,7 +10,4 @@ public:
 
 	static void Init();
 	static void Step(VECTOR pos);
-
-	static float GetScreenPosX() { return m_screex_pos_x; }
-	static float GetScreenPosY() { return m_screex_pos_y; }
 };
