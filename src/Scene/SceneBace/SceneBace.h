@@ -1,5 +1,8 @@
 #pragma once
 
+constexpr char DISTANCE_SAVE_DATA[] = { "data/SaveData/AdvancedDistance.txt" };
+constexpr char MAX_DISTANCE_SAVE_DATA[] = { "data/SaveData/MaxAdvancedDistance.txt" };
+
 class SceneBace
 {
 public:

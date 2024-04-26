@@ -10,6 +10,7 @@ constexpr int MAX_JUMP_NUM = 1;
 
 //ジャンプ時の力
 constexpr float PLAYER_JUMP_POWER = GRAVITY_POWER * 30;
+constexpr float PLAYER_ATTACK_JUMP_POWER = PLAYER_JUMP_POWER / 2;
 //横移動の加速度
 constexpr float PLAYER_MOVE_SPEED = 5.0f;
 //横移動の最大速度
@@ -43,7 +44,7 @@ public:
 	void Draw();
 	void Fin();
 
-	void Jump();
+	void Jump(float jump_power = PLAYER_JUMP_POWER);
 	void MoveX();
 
 	void Attack();

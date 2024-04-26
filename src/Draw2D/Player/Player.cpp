@@ -87,14 +87,14 @@ void Player::MoveX()
 		m_pos.x = Screen::m_screex_pos_x;
 }
 
-void Player::Jump()
+void Player::Jump(float jump_power)
 {
 	//最大連続ジャンプ数分既にジャンプしている場合は処理を行わない
 	if (m_jump_count >= m_max_jump_num)
 		return;
 
 	m_jump_count++;
-	m_move_power.y = -PLAYER_JUMP_POWER;
+	m_move_power.y = -jump_power;
 }
 
 void Player::Attack()

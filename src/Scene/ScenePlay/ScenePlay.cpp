@@ -43,7 +43,7 @@ void ScenePlay::Step()
 	}
 
 	if (player_info.GetPos().y > SCREEN_SIZE_Y) {
-		g_current_scene_ID = Result;
+		Fin();
 	}
 }
 
@@ -53,4 +53,34 @@ void ScenePlay::Draw()
 		enemy_info[i].DrawEnemy();
 	}
 	player_info.Draw();
+
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "(%d)", (int)((player_info.GetPos().x - PLAYER_DEFAULT_POS.x) / 100));
+}
+
+void ScenePlay::Fin()
+{
+	//最大移動距離を保存したファイルを開く
+	if (file_info.OpenFile(MAX_DISTANCE_SAVE_DATA, "r")) {
+		int distance;
+
+		//最大移動距離を取得
+		int a = fscanf_s(file_info.fp, "%d", &distance);
+		file_info.CloseFile();
+
+		//保存された数値より今回の距離の方が長かった時
+		if (distance < ((player_info.GetPos().x - PLAYER_DEFAULT_POS.x) / 100)) {
+			//今回の距離を最大移動距離を保存するファイルに保存する
+			if (file_info.OpenFile(MAX_DISTANCE_SAVE_DATA, "w")) {
+				fprintf(file_info.fp, "%d", (int)((player_info.GetPos().x - PLAYER_DEFAULT_POS.x) / 100));
+				file_info.CloseFile();
+			}
+		}
+		//今回の距離を保存する
+		if (file_info.OpenFile(DISTANCE_SAVE_DATA, "w")) {
+			fprintf(file_info.fp, "%d", (int)((player_info.GetPos().x - PLAYER_DEFAULT_POS.x) / 100));
+			file_info.CloseFile();
+		}
+	}
+
+	g_current_scene_ID = Result;
 }

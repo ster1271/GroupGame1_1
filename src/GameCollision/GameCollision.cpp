@@ -17,6 +17,6 @@ void CollisionPlayerAttackToEnemy(Player& player, EnemyInfo& enemy)
 		player.SetJumpCount(0);
 		player.SetMaxJumpNum(2);
 
-		player.Jump();
+		player.Jump(PLAYER_ATTACK_JUMP_POWER);
 	}
 }
