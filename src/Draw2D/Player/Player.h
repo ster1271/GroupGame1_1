@@ -27,6 +27,8 @@ constexpr int PLAYER_ATTACK_TIME = (int)(0.5 * 60);
 class Player :public Draw2D
 {
 private:
+	bool m_stat_flag;
+
 	int m_jump_count;		//ジャンプした回数
 	int m_max_jump_num;		//ジャンプできる最大の数
 

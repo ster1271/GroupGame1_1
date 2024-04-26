@@ -11,6 +11,8 @@ Player::Player()
 
 	m_attack_flag = 0;
 	m_count_attack_time = 0;
+
+	m_stat_flag = 0;
 }
 Player::~Player()
 {
@@ -28,20 +30,25 @@ void Player::Init()
 
 	m_attack_flag = false;
 	m_count_attack_time = 0;
+
+	m_stat_flag = false;
 }
 void Player::Step()
 {
 	if (Input::IsKeyPush(KEY_INPUT_SPACE)) {
+		m_stat_flag = true;
 		Jump();
 	}
-	MoveX();
-	Attack();
+	if (m_stat_flag) {
+		MoveX();
+		Attack();
 
-	m_move_power.y += GRAVITY_POWER;
-	if (m_move_power.y >= MAX_FILLING_SPEED)
-		m_move_power.y = MAX_FILLING_SPEED;
+		m_move_power.y += GRAVITY_POWER;
+		if (m_move_power.y >= MAX_FILLING_SPEED)
+			m_move_power.y = MAX_FILLING_SPEED;
 
-	m_pos.y += m_move_power.y;
+		m_pos.y += m_move_power.y;
+	}
 }
 void Player::Draw()
 {
