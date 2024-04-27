@@ -5,6 +5,8 @@ constexpr char ENEMY_HANDLE_PATH[] = { "Data/Enemy/Enemy(âº).png" };
 
 constexpr int ENEMY_COLLISION_SIZE = 60;
 
+constexpr float ENEMY_INTERVAL_POS_X = 500;
+
 //ìGèÓïÒç\ë¢ëÃ
 class EnemyInfo:public Draw2D
 {

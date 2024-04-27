@@ -20,15 +20,18 @@ void EnemyInfo::InitEnemy(VECTOR pos) {
 
 	m_pos = pos;
 
-	m_enemy_index = 5;
+	m_enemy_index = 1;
 
 	m_coliision_size = { (float)ENEMY_COLLISION_SIZE ,(float)ENEMY_COLLISION_SIZE ,0 };
+
+	m_isUse = false;
 }
 
 void EnemyInfo::DrawEnemy()
 {
 	//“G•`‰æ
-	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x),
+	if (m_isUse)
+		DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x),
 			(int)(m_pos.y),
 			m_handle[0],
 			true);
@@ -38,7 +41,7 @@ void EnemyInfo::SpawnEnemy()
 {
 	VECTOR pos;
 
-	pos.x = (float)(400 * m_enemy_index);
+	pos.x = (float)(ENEMY_INTERVAL_POS_X * m_enemy_index);
 	pos.y = (float)(GetRand(100) + 310);
 	pos.z = 0.0f;
 

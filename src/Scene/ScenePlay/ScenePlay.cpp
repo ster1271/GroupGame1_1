@@ -10,39 +10,56 @@ void ScenePlay::Init()
 	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
 		enemy_info[i].InitEnemy(ENEMY_DEFAULT_POS[i]);
 	}
+	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+		enemy_info[i].SpawnEnemy();
+	}
+	wall_info.Init();
 	Screen::Init();
+
+	m_gameover_flag = false;
 }
 
 void ScenePlay::Step()
 {
-	player_info.Step();
+	if (!m_gameover_flag) {
+		player_info.Step();
 
-	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-		CollisionPlayerAttackToEnemy(player_info, enemy_info[i]);
-	}
+		if (player_info.GetStartFlag()) {
+			wall_info.Step(player_info.GetPos());
 
-	Screen::Step(player_info.GetPos());
+			for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+				if (enemy_info[i].GetIsUse())
+					CollisionPlayerAttackToEnemy(player_info, enemy_info[i]);
+			}
 
-	//画面外(左)に行ったら使用フラグを折る
-	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-		if (enemy_info[i].GetPos().x - Screen::m_screex_pos_x <= -ENEMY_COLLISION_SIZE) {
-			enemy_info[i].SetIsUse(false);
-			break;
-		}
-	}
-	//一定距離進んだら敵をスポーンさせる
-	if (Screen::m_screex_pos_x - Screen::m_reference_point >= 400) {
-		Screen::m_reference_point += 400;
-		for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+			Screen::Step(player_info.GetPos());
 
-			if (!enemy_info[i].GetIsUse()) {
-				enemy_info[i].SpawnEnemy();
-				break;
+			//画面外(左)に行ったら使用フラグを折る
+			for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+				if (enemy_info[i].GetPos().x - Screen::m_screex_pos_x <= -ENEMY_COLLISION_SIZE) {
+					enemy_info[i].SetIsUse(false);
+					break;
+				}
+			}
+			//一定距離進んだら敵をスポーンさせる
+			if (Screen::m_screex_pos_x - Screen::m_reference_point >= ENEMY_INTERVAL_POS_X) {
+				Screen::m_reference_point += ENEMY_INTERVAL_POS_X;
+				for (int i = 0; i < ENEMY_MAX_NUM; i++) {
+
+					if (!enemy_info[i].GetIsUse()) {
+						enemy_info[i].SpawnEnemy();
+						break;
+					}
+				}
+			}
+
+			if (player_info.GetPos().y > SCREEN_SIZE_Y||
+				CollisionPlayerToWall(player_info.GetPos(), wall_info.GetPos())) {
+				m_gameover_flag = true;
 			}
 		}
 	}
-
-	if (player_info.GetPos().y > SCREEN_SIZE_Y) {
+	else {
 		Fin();
 	}
 }
@@ -52,6 +69,7 @@ void ScenePlay::Draw()
 	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
 		enemy_info[i].DrawEnemy();
 	}
+	wall_info.Draw();
 	player_info.Draw();
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "(%d)", (int)((player_info.GetPos().x - PLAYER_DEFAULT_POS.x) / 100));
