@@ -4,6 +4,7 @@
 #include "Input/Input.h"
 #include "Collision/Collision.h"
 #include "Scene/SceneManager.h"
+#include "Sound/Sound.h"
 
 SceneID g_current_scene_ID;
 
@@ -103,6 +104,7 @@ void InitGame()
 	SetDrawScreen(DX_SCREEN_BACK);	//•`‰æ‚·‚éƒXƒNƒŠ[ƒ“‚ğİ’è‚·‚é
 
 	Input::InitInput();
+	Sound::InitSound();
 
 	g_current_scene_ID = Title;
 }
@@ -110,4 +112,5 @@ void InitGame()
 void FinGame()
 {
 	//ÅŒã‚É‚P‰ñ‚¾‚¯‚â‚éˆ—‚ğ‚±‚±‚É‘‚­
+	Sound::FinSound();
 }

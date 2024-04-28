@@ -5,7 +5,7 @@
 
 void SceneTitle::Init()
 {
-
+	m_bg_handle = LoadGraph(TITLE_HANDLE_PATH);
 }
 void SceneTitle::Step()
 {
@@ -17,6 +17,8 @@ void SceneTitle::Step()
 }
 void SceneTitle::Draw()
 {
+	DrawGraph(0, 0, m_bg_handle, true);
+
 	DrawString(0, 0, "タイトルシーンです。", GetColor(255, 255, 255), true);
 	DrawString(0, 15, "Enterで次のシーンへ", GetColor(255, 255, 255), true);
 }
