@@ -13,12 +13,12 @@ EnemyInfo::~EnemyInfo()
 	Draw2D::~Draw2D();
 }
 
-void EnemyInfo::InitEnemy(VECTOR pos) {
+void EnemyInfo::InitEnemy() {
 	//ìGèâä˙âª
 
 	LoadHandle((char*)ENEMY_HANDLE_PATH, 1, 1, 1, 60, 60);
 
-	m_pos = pos;
+	m_pos = { 0.0f,0.0f,0.0f };
 
 	m_enemy_index = 1;
 

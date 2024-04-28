@@ -17,7 +17,7 @@ public:
 	EnemyInfo();
 	~EnemyInfo();
 
-	void InitEnemy(VECTOR pos);
+	void InitEnemy();
 
 	void DrawEnemy();
 

@@ -8,12 +8,14 @@ void ScenePlay::Init()
 {
 	player_info.Init();
 	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
-		enemy_info[i].InitEnemy(ENEMY_DEFAULT_POS[i]);
+		enemy_info[i].InitEnemy();
 	}
 	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
 		enemy_info[i].SpawnEnemy();
 	}
 	wall_info.Init();
+	background_info.Init();
+
 	Screen::Init();
 
 	m_gameover_flag = false;
@@ -57,6 +59,8 @@ void ScenePlay::Step()
 				CollisionPlayerToWall(player_info.GetPos(), wall_info.GetPos())) {
 				m_gameover_flag = true;
 			}
+
+			background_info.Step();
 		}
 	}
 	else {
@@ -66,6 +70,8 @@ void ScenePlay::Step()
 
 void ScenePlay::Draw()
 {
+	background_info.Draw();
+
 	for (int i = 0; i < ENEMY_MAX_NUM; i++) {
 		enemy_info[i].DrawEnemy();
 	}
