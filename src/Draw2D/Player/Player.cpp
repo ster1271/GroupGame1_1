@@ -13,6 +13,8 @@ Player::Player()
 	m_count_attack_time = 0;
 
 	m_stat_flag = 0;
+
+	m_player_animation.Init();
 }
 Player::~Player()
 {
@@ -22,7 +24,7 @@ Player::~Player()
 void Player::Init()
 {
 	LoadHandle((char*)PLAYER_HANDLE_PATH,
-		1, 1, 1, 60, 60);
+					5, 3, 2, 60, 60);
 	m_pos = PLAYER_DEFAULT_POS;
 
 	m_jump_count = 0;		//ジャンプした回数
@@ -32,6 +34,8 @@ void Player::Init()
 	m_count_attack_time = 0;
 
 	m_stat_flag = false;
+
+	m_player_animation.Init();
 }
 void Player::Step()
 {
@@ -48,6 +52,17 @@ void Player::Step()
 			m_move_power.y = MAX_FILLING_SPEED;
 
 		m_pos.y += m_move_power.y;
+
+		//アニメーション
+		if (m_move_power.y > 0) {
+			m_player_animation.SetCurrentAnimationIndex(Up);
+		}
+		else if (m_move_power.y < 0) {
+			m_player_animation.SetCurrentAnimationIndex(Down);
+		}
+		else {
+			m_player_animation.SetCurrentAnimationIndex(Normal);
+		}
 	}
 }
 void Player::Draw()
@@ -58,7 +73,7 @@ void Player::Draw()
 					PLAYER_ATTACK_COLLISION_R,
 					GetColor(255, 255, 255), true);
 	}
-	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x), (int)m_pos.y, m_handle[0], true);
+	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x), (int)m_pos.y, m_handle[m_player_animation.GetCurrentAnimeIndex()], true);
 }
 void Player::Fin()
 {

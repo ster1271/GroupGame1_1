@@ -1,5 +1,6 @@
 #pragma once
 #include "../Draw2D.h"
+#include "../../Animation/Animation.h"
 
 //ハンドルパス
 constexpr char PLAYER_HANDLE_PATH[64] = { "data/Player/Player.png" };
@@ -22,7 +23,7 @@ constexpr int PLAYER_SIZE_Y = 60;
 //攻撃の当たり判定のサイズ(半径)
 constexpr int PLAYER_ATTACK_COLLISION_R = 60;
 //攻撃の持続時間（秒数 * フレーム数）
-constexpr int PLAYER_ATTACK_TIME = (int)(0.5 * 60);
+constexpr int PLAYER_ATTACK_TIME = (int)(0.1 * 60);
 
 class Player :public Draw2D
 {
@@ -36,6 +37,15 @@ private:
 
 	bool m_attack_flag;		//攻撃フラグ
 	int m_count_attack_time;
+
+	Animation m_player_animation;
+
+	enum AnimeType
+	{
+		Normal,
+		Up,
+		Down,
+	};
 
 public:
 	Player();
