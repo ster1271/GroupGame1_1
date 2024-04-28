@@ -19,6 +19,8 @@ void SceneResult::Init()
 
 		file_info.CloseFile();
 	}
+
+	m_bg_handle = LoadGraph(RESULT_HANDLE_PATH);
 }
 void SceneResult::Step()
 {
@@ -29,6 +31,8 @@ void SceneResult::Step()
 }
 void SceneResult::Draw()
 {
+	DrawGraph(0, 0, m_bg_handle, true);
+
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "リザルトシーンです。");
 	DrawFormatString(0, 15, GetColor(255, 255, 255), "Enterで次のシーンへ");
 	DrawFormatString(0, 45, GetColor(255, 255, 255), "今までの最大移動距離( %d )", m_player_max_adv_dis);

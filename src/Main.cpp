@@ -5,6 +5,7 @@
 #include "Collision/Collision.h"
 #include "Scene/SceneManager.h"
 #include "Sound/Sound.h"
+#include "Font/Font.h"
 
 SceneID g_current_scene_ID;
 
@@ -105,6 +106,7 @@ void InitGame()
 
 	Input::InitInput();
 	Sound::InitSound();
+	Font::LoadFontHandle();
 
 	g_current_scene_ID = Title;
 }
@@ -113,4 +115,5 @@ void FinGame()
 {
 	//ÅŒã‚É‚P‰ñ‚¾‚¯‚â‚éˆ—‚ğ‚±‚±‚É‘‚­
 	Sound::FinSound();
+	Font::DeleteFontHandle();
 }
