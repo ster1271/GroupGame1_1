@@ -13,6 +13,10 @@ private:
 
 	int m_bg_handle;
 
+	int numberHundle[10];
+	int MyScore;
+	int BestScore;
+
 public:
 	void Init();
 	void Step();
