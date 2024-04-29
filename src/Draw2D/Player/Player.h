@@ -3,7 +3,9 @@
 #include "../../Animation/Animation.h"
 
 //ハンドルパス
-constexpr char PLAYER_HANDLE_PATH[64] = { "data/Player/Player.png" };
+constexpr char PLAYER_HANDLE_PATH[] = { "data/Player/Player.png" };
+constexpr char PLAYER_ATTACK_HANDLE_PATH[]= { "data/Player/Player_Attack.png" };
+
 //プレイヤーの初期座標
 constexpr VECTOR PLAYER_DEFAULT_POS = { 300.0f,360.0f,0.0f };
 //連続ジャンプの初期最大数
@@ -30,6 +32,8 @@ class Player :public Draw2D
 private:
 	bool m_stat_flag;
 
+	int m_player_attack_handle[6];	//プレイヤーの攻撃の画像ハンドル
+
 	int m_jump_count;		//ジャンプした回数
 	int m_max_jump_num;		//ジャンプできる最大の数
 
@@ -39,7 +43,7 @@ private:
 	bool m_pre_attack_flag;		//攻撃フラグ
 	int m_count_attack_time;
 
-	Animation m_player_animation;
+	Animation m_player_animation[2];
 
 	enum AnimeType
 	{

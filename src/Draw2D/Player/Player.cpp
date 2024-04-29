@@ -5,6 +5,9 @@
 
 Player::Player()
 {
+	for (int i = 0; i < 6; i++)
+		m_player_attack_handle[i] = 0;
+
 	m_jump_count = 0;
 	m_max_jump_num = 0;
 
@@ -16,7 +19,8 @@ Player::Player()
 
 	m_stat_flag = 0;
 
-	m_player_animation.Init();
+	m_player_animation[0].Init();
+	m_player_animation[1].Init();
 }
 Player::~Player()
 {
@@ -27,6 +31,10 @@ void Player::Init()
 {
 	LoadHandle((char*)PLAYER_HANDLE_PATH,
 					5, 3, 2, 60, 60);
+
+	for (int i = 0; i < 6; i++)
+		LoadDivGraph(PLAYER_ATTACK_HANDLE_PATH, 6, 3, 2, 120, 120, m_player_attack_handle);
+
 	m_pos = PLAYER_DEFAULT_POS;
 
 	m_jump_count = 0;		//ジャンプした回数
@@ -38,7 +46,8 @@ void Player::Init()
 
 	m_stat_flag = false;
 
-	m_player_animation.Init();
+	m_player_animation[0].Init();
+	m_player_animation[1].Init();
 }
 void Player::Step()
 {
@@ -59,25 +68,28 @@ void Player::Step()
 
 		//アニメーション
 		if (m_move_power.y > 0) {
-			m_player_animation.SetCurrentAnimationIndex(Up);
+			m_player_animation[0].SetCurrentAnimationIndex(Up);
 		}
 		else if (m_move_power.y < 0) {
-			m_player_animation.SetCurrentAnimationIndex(Down);
+			m_player_animation[0].SetCurrentAnimationIndex(Down);
 		}
 		else {
-			m_player_animation.SetCurrentAnimationIndex(Normal);
+			m_player_animation[0].SetCurrentAnimationIndex(Normal);
 		}
 	}
 }
 void Player::Draw()
 {
 	if (m_attack_flag) {
-		DrawCircle((int)(m_pos.x - Screen::m_screex_pos_x + PLAYER_SIZE_X),
+		DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x), (int)(m_pos.y - PLAYER_ATTACK_COLLISION_R / 2),
+			m_player_attack_handle[m_player_animation[1].GetCurrentAnimeIndex()], true);
+
+		/*DrawCircle((int)(m_pos.x - Screen::m_screex_pos_x + PLAYER_SIZE_X),
 					(int)(m_pos.y + PLAYER_SIZE_Y / 2),
 					PLAYER_ATTACK_COLLISION_R,
-					GetColor(255, 255, 255), true);
+					GetColor(255, 255, 255), true);*/
 	}
-	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x), (int)m_pos.y, m_handle[m_player_animation.GetCurrentAnimeIndex()], true);
+	DrawGraph((int)(m_pos.x - Screen::m_screex_pos_x), (int)m_pos.y, m_handle[m_player_animation[0].GetCurrentAnimeIndex()], true);
 }
 void Player::Fin()
 {
@@ -131,10 +143,14 @@ void Player::Attack()
 
 	if (Input::IsKeyPush(KEY_INPUT_J) && !m_pre_attack_flag) {
 		m_attack_flag = true;
+		m_player_animation[1].SetCurrentAnimationIndex(0);
 		Sound::PlaySE(AttackEnpty_SE);
 	}
 
 	if (m_attack_flag) {
+
+		m_player_animation[1].SetCurrentAnimationIndex(m_player_animation[1].GetCurrentAnimeIndex() + 1);
+
 		if (m_count_attack_time >= PLAYER_ATTACK_TIME) {
 			m_count_attack_time = 0;
 			m_attack_flag = false;
