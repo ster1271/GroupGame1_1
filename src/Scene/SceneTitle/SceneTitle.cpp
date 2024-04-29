@@ -5,11 +5,8 @@
 
 void SceneTitle::Init()
 {
-	SelectY = 400;
-
-	m_bg_handle = LoadGraph(TITLE_HANDLE_PATH);
-	SelectHandl = LoadGraph("data/Bg/Select.png");
-
+	TitleHandl01 = LoadGraph(TITLE_HANDLE_PATH01);
+	TitleHandl02 = LoadGraph(TITLE_HANDLE_PATH02);
 }
 void SceneTitle::Step()
 {
@@ -21,7 +18,7 @@ void SceneTitle::Step()
 }
 void SceneTitle::Draw()
 {
-	DrawGraph(0, 0, m_bg_handle, true);
+	//DrawGraph(0, 0, TitleHandl01, true);
+	DrawGraph(0, 0, TitleHandl02, true);
 
-	DrawRotaGraph(420, SelectY, 0.3f, 0.0f, SelectHandl, true, false, false);
 }

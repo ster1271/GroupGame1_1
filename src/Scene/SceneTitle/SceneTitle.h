@@ -1,16 +1,14 @@
 #pragma once
 #include "../SceneBace/SceneBace.h"
 
-constexpr char TITLE_HANDLE_PATH[] = { "data/Bg/Bg_Title.png" };
+constexpr char TITLE_HANDLE_PATH01[] = { "data/Bg/Bg_Title01.png" };
+constexpr char TITLE_HANDLE_PATH02[] = { "data/Bg/Bg_Title02.png" };
 
 class SceneTitle :public SceneBace
 {
 private:
-	int m_bg_handle;
-	int TitleHandl;
-	int SelectHandl;
-
-	int SelectY;
+	int TitleHandl01;
+	int TitleHandl02;
 
 public:
 	void Init();

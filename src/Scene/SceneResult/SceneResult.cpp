@@ -71,8 +71,8 @@ void SceneResult::Draw()
 	DrawGraph(0, 0, m_bg_handle, true);
 
 	//=============ポイント描画=====================
-	Test(MyScoreHundle, m_player_adv_dis, 750, 315);			//今回のスコア
-	Test(BestScoreHundle, m_player_max_adv_dis, 750, 450 );		//ベストスコア
+	DrawNumber(MyScoreHundle, m_player_adv_dis, 750, 315);			//今回のスコア
+	DrawNumber(BestScoreHundle, m_player_max_adv_dis, 750, 450 );		//ベストスコア
 	//=============ポイント描画=====================
 
 	//更新フラグがtrueになったら
@@ -84,11 +84,9 @@ void SceneResult::Draw()
 	DrawRotaGraph(640, 580, 1.0f, 0.0f, Hundle_Try, true, false, false);
 	DrawRotaGraph(640, 650, 1.0f, 0.0f, Hundle_Title, true, false, false);
 	DrawRotaGraph(420, SelectY, 0.3f, 0.0f, SelectHundl, true, false, false);
-
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "Enterで次のシーンへ");
 }
 
-void SceneResult::Test(int Hndl[10], int Score, int X, int Y)//引数(数字画像格納ハンドル, 入れたいスコア, X座標, Y座標)
+void SceneResult::DrawNumber(int Hndl[10], int Score, int X, int Y)//引数(数字画像格納ハンドル, 入れたいスコア, X座標, Y座標)
 {
 	//ポイント描画
 	int DrawScore = Score;

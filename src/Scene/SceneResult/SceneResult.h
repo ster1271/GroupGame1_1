@@ -28,5 +28,5 @@ public:
 	void Step();
 	void Draw();
 
-	void Test(int Hndl[10], int Score, int X, int Y);
+	void DrawNumber(int Hndl[10], int Score, int X, int Y);
 };
