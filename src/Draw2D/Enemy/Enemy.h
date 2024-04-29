@@ -1,7 +1,7 @@
 #pragma once
 #include "../Draw2D.h"
 
-constexpr char ENEMY_HANDLE_PATH[] = { "Data/Enemy/Enemy(âº).png" };
+constexpr char ENEMY_HANDLE_PATH[] = { "Data/Enemy/Enemy(êlã ).png" };
 
 constexpr int ENEMY_COLLISION_SIZE = 60;
 
