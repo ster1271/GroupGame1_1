@@ -42,7 +42,7 @@ void EnemyInfo::SpawnEnemy()
 	VECTOR pos;
 
 	pos.x = (float)(ENEMY_INTERVAL_POS_X * m_enemy_index);
-	pos.y = (float)(GetRand(100) + GetRand(400));
+	pos.y = (float)(GetRand(300) + GetRand(350));
 	pos.z = 0.0f;
 
 	m_enemy_index++;

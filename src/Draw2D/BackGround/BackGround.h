@@ -1,7 +1,7 @@
 #pragma once
 #include "../Draw2D.h"
 
-constexpr char BACKGROUND_HANDLE_PATH[] = { "data/Object/BackGround.png" };
+constexpr char BACKGROUND_HANDLE_PATH[] = { "data/Object/êX3.png" };
 
 class BackGround :public Draw2D
 {

@@ -29,15 +29,15 @@ void BackGround::Step()
 }
 void BackGround::Draw()
 {
-	/*for (int i = 0; i < 2; i++) {
-		DrawGraph((int)m_pos[i].x, (int)m_pos[i].y, m_handle[0], true);
-	}*/
+	for (int i = 0; i < 2; i++) {
+		DrawGraph((int)m_pos[i].x - Screen::m_screex_pos_x, (int)m_pos[i].y, m_handle[0], true);
+	}
 
 	//デバッグ用
-	DrawBox((int)(m_pos[0].x - Screen::m_screex_pos_x), (int)m_pos[0].y,
+	/*DrawBox((int)(m_pos[0].x - Screen::m_screex_pos_x), (int)m_pos[0].y,
 		(int)(m_pos[0].x + SCREEN_SIZE_X - Screen::m_screex_pos_x), (int)(m_pos[0].y + SCREEN_SIZE_Y),
 		GetColor(0, 200, 255), true);
 	DrawBox((int)(m_pos[1].x - Screen::m_screex_pos_x), (int)m_pos[1].y,
 		(int)(m_pos[1].x + SCREEN_SIZE_X - Screen::m_screex_pos_x), (int)(m_pos[1].y + SCREEN_SIZE_Y),
-		GetColor(255, 0, 120), true);
+		GetColor(255, 0, 120), true);*/
 }
