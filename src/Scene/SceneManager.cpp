@@ -29,6 +29,7 @@ void SceneManager::Main()
 		scene = new ScenePlay;
 		scene->Init();
 		Sound::StopBGM(Title_BGM);
+		Sound::StopBGM(Result_BGM);
 		Sound::PlayBGM(Play_BGM);
 		g_current_scene_ID = LOOP;
 		break;
