@@ -21,7 +21,7 @@ enum SEtype
 constexpr char BGM_HANDLE_PATH[ScenetypeMaxNum][64] = {
 	{"data/BGM/魔王魂 ループ  民族33.wav"},
 	{"data/BGM/魔王魂 ループ BGM ネオロック73.wav"},
-	{},
+	{"data/BGM/MusMus-BGM-156.wav"},
 };
 
 constexpr char SE_HANDLE_PATH[SEtypeMaxNum][64] = {
