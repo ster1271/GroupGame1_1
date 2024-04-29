@@ -11,8 +11,9 @@ enum Scenetype
 
 enum SEtype
 {
-	Jump,
-	Attack,
+	Jump_SE,
+	Attack_SE,
+	AttackEnpty_SE,
 
 	SEtypeMaxNum
 };
@@ -24,8 +25,9 @@ constexpr char BGM_HANDLE_PATH[ScenetypeMaxNum][64] = {
 };
 
 constexpr char SE_HANDLE_PATH[SEtypeMaxNum][64] = {
-	{},
-	{},
+	{"data/SE/ƒWƒƒƒ“ƒv.wav"},
+	{"data/SE/UŒ‚(è).wav"},
+	{"data/SE/UŒ‚(‹óU‚è—p).wav"},
 };
 
 class Sound
@@ -39,6 +41,7 @@ public:
 
 	static void InitSound();
 	static void PlaySE(int index);
+	static void StopSE(int index);
 	static void PlayBGM(int index);
 	static void StopBGM(int index);
 	static void FinSound();

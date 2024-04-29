@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "../../Input/Input.h"
 #include "../../Screen/Screen.h"
+#include "../../Sound/Sound.h"
 
 Player::Player()
 {
@@ -10,6 +11,7 @@ Player::Player()
 	m_move_power = { 0 };
 
 	m_attack_flag = 0;
+	m_pre_attack_flag = 0;
 	m_count_attack_time = 0;
 
 	m_stat_flag = 0;
@@ -31,6 +33,7 @@ void Player::Init()
 	m_max_jump_num = MAX_JUMP_NUM;	//ジャンプできる最大の数
 
 	m_attack_flag = false;
+	m_pre_attack_flag = m_attack_flag;
 	m_count_attack_time = 0;
 
 	m_stat_flag = false;
@@ -41,7 +44,8 @@ void Player::Step()
 {
 	if (Input::IsKeyPush(KEY_INPUT_SPACE)) {
 		m_stat_flag = true;
-		Jump();
+		if (Jump())
+			Sound::PlaySE(Jump_SE);
 	}
 	if (m_stat_flag) {
 		MoveX();
@@ -109,20 +113,25 @@ void Player::MoveX()
 		m_pos.x = Screen::m_screex_pos_x;
 }
 
-void Player::Jump(float jump_power)
+bool Player::Jump(float jump_power)
 {
 	//最大連続ジャンプ数分既にジャンプしている場合は処理を行わない
 	if (m_jump_count >= m_max_jump_num)
-		return;
+		return false;
 
 	m_jump_count++;
 	m_move_power.y = -jump_power;
+
+	return true;
 }
 
 void Player::Attack()
 {
-	if (Input::IsKeyPush(KEY_INPUT_J)) {
+	m_pre_attack_flag = m_attack_flag;
+
+	if (Input::IsKeyPush(KEY_INPUT_J) && !m_pre_attack_flag) {
 		m_attack_flag = true;
+		Sound::PlaySE(AttackEnpty_SE);
 	}
 
 	if (m_attack_flag) {

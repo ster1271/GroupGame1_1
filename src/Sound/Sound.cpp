@@ -24,14 +24,27 @@ void Sound::InitSound()
 		m_BGM_handle[i] = LoadSoundMem(BGM_HANDLE_PATH[i]);
 	}
 	for (int i = 0; i < SEtypeMaxNum; i++) {
-		m_BGM_handle[i] = LoadSoundMem(SE_HANDLE_PATH[i]);
+		m_SE_handle[i] = LoadSoundMem(SE_HANDLE_PATH[i]);
 	}
+
+	ChangeVolumeSoundMem(120, m_SE_handle[0]);
+	ChangeVolumeSoundMem(200, m_SE_handle[1]);
+	ChangeVolumeSoundMem(160, m_SE_handle[2]);
 }
 
 void Sound::PlaySE(int index)
 {
 	//ƒTƒEƒ“ƒhÄ¶
 	PlaySoundMem(m_SE_handle[index], DX_PLAYTYPE_BACK, true);
+}
+
+void Sound::StopSE(int index)
+{
+	// SE’âŽ~
+	if (CheckSoundMem(m_SE_handle[index]) == 1)
+	{
+		StopSoundMem(m_SE_handle[index]);
+	}
 }
 
 void Sound::PlayBGM(int index)

@@ -36,6 +36,7 @@ private:
 	VECTOR m_move_power;	// 1フレームで移動する距離
 
 	bool m_attack_flag;		//攻撃フラグ
+	bool m_pre_attack_flag;		//攻撃フラグ
 	int m_count_attack_time;
 
 	Animation m_player_animation;
@@ -56,7 +57,7 @@ public:
 	void Draw();
 	void Fin();
 
-	void Jump(float jump_power = PLAYER_JUMP_POWER);
+	bool Jump(float jump_power = PLAYER_JUMP_POWER);
 	void MoveX();
 
 	void Attack();

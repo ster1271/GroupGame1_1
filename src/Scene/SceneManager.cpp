@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "SceneManager.h"
 #include "../Common.h"
+#include "../Sound/Sound.h"
 
 SceneManager::SceneManager()
 {
@@ -16,6 +17,8 @@ void SceneManager::Main()
 		}
 		scene = new SceneTitle;
 		scene->Init();
+		Sound::StopBGM(Result_BGM);
+		Sound::PlayBGM(Title_BGM);
 		g_current_scene_ID = LOOP;
 		break;
 	}
@@ -25,6 +28,8 @@ void SceneManager::Main()
 		}
 		scene = new ScenePlay;
 		scene->Init();
+		Sound::StopBGM(Title_BGM);
+		Sound::PlayBGM(Play_BGM);
 		g_current_scene_ID = LOOP;
 		break;
 	}
@@ -34,6 +39,8 @@ void SceneManager::Main()
 		}
 		scene = new SceneResult;
 		scene->Init();
+		Sound::StopBGM(Play_BGM);
+		Sound::PlayBGM(Result_BGM);
 		g_current_scene_ID = LOOP;
 		break;
 	}

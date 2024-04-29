@@ -2,6 +2,7 @@
 #include "GameCollision.h"
 #include "../Collision/Collision.h"
 #include "../Draw2D/Wall/Wall.h"
+#include "../Sound/Sound.h"
 
 void CollisionPlayerAttackToEnemy(Player& player, EnemyInfo& enemy)
 {
@@ -21,6 +22,9 @@ void CollisionPlayerAttackToEnemy(Player& player, EnemyInfo& enemy)
 		player.Jump(PLAYER_ATTACK_JUMP_POWER);
 
 		enemy.DeathEnemy();
+
+		Sound::StopSE(AttackEnpty_SE);
+		Sound::PlaySE(Attack_SE);
 	}
 }
 
