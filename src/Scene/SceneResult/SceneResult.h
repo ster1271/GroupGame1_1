@@ -15,6 +15,11 @@ private:
 	int MyScoreHundle[10];
 	int BestScoreHundle[10]; 
 	int NewR_Hundle;
+	int Hundle_Title;
+	int Hundle_Try;
+	int SelectHundl;
+
+	int SelectY;
 
 	bool IsNewRecord;
 

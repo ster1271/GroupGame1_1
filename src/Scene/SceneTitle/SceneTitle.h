@@ -8,7 +8,9 @@ class SceneTitle :public SceneBace
 private:
 	int m_bg_handle;
 	int TitleHandl;
+	int SelectHandl;
 
+	int SelectY;
 
 public:
 	void Init();

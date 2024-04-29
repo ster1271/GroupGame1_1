@@ -6,6 +6,7 @@
 void SceneResult::Init()
 {
 	IsNewRecord = false;
+	SelectY = 580;
 
 	MyScoreHundle[10] = { 0 };
 	BestScoreHundle[10] = { 0 };
@@ -31,6 +32,9 @@ void SceneResult::Init()
 
 	m_bg_handle = LoadGraph(RESULT_HANDLE_PATH);
 	NewR_Hundle = LoadGraph("data/Bg/New.png");
+	Hundle_Title = LoadGraph("data/Bg/ReturnT.png");
+	Hundle_Try = LoadGraph("data/Bg/TryAgein.png");
+	SelectHundl = LoadGraph("data/Bg/Select.png");
 }
 void SceneResult::Step()
 {
@@ -41,14 +45,29 @@ void SceneResult::Step()
 		IsNewRecord = true;
 	}
 
+	if (Input::IsKeyPush(KEY_INPUT_DOWN))
+	{
+		SelectY = 650;
+	}
+	else if (Input::IsKeyPush(KEY_INPUT_UP))
+	{
+		SelectY = 580;
+	}
+
 	if (Input::IsKeyPush(KEY_INPUT_RETURN))
 	{
-		g_current_scene_ID = Title;
+		if (SelectY == 580)
+		{
+			g_current_scene_ID = Play;
+		}
+		else
+		{
+			g_current_scene_ID = Title;
+		}
 	}
 }
 void SceneResult::Draw()
 {
-
 	DrawGraph(0, 0, m_bg_handle, true);
 
 	//=============ポイント描画=====================
@@ -61,6 +80,10 @@ void SceneResult::Draw()
 	{
 		DrawGraph(0, 80,NewR_Hundle, true);
 	}
+
+	DrawRotaGraph(640, 580, 1.0f, 0.0f, Hundle_Try, true, false, false);
+	DrawRotaGraph(640, 650, 1.0f, 0.0f, Hundle_Title, true, false, false);
+	DrawRotaGraph(420, SelectY, 0.3f, 0.0f, SelectHundl, true, false, false);
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Enterで次のシーンへ");
 }
