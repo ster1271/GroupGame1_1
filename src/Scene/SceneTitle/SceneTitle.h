@@ -7,6 +7,8 @@ class SceneTitle :public SceneBace
 {
 private:
 	int m_bg_handle;
+	int TitleHandl;
+
 
 public:
 	void Init();

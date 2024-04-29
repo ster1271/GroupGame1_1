@@ -12,13 +12,16 @@ private:
 	int m_player_max_adv_dis;
 
 	int m_bg_handle;
+	int MyScoreHundle[10];
+	int BestScoreHundle[10]; 
+	int NewR_Hundle;
 
-	int numberHundle[10];
-	int MyScore;
-	int BestScore;
+	bool IsNewRecord;
 
 public:
 	void Init();
 	void Step();
 	void Draw();
+
+	void Test(int Hndl[10], int Score, int X, int Y);
 };
