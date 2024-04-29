@@ -19,8 +19,8 @@ enum SEtype
 };
 
 constexpr char BGM_HANDLE_PATH[ScenetypeMaxNum][64] = {
-	{},
-	{},
+	{"data/BGM/魔王魂 ループ  民族33.wav"},
+	{"data/BGM/魔王魂 ループ BGM ネオロック73.wav"},
 	{},
 };
 
