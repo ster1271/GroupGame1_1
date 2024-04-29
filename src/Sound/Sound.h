@@ -25,9 +25,9 @@ constexpr char BGM_HANDLE_PATH[ScenetypeMaxNum][64] = {
 };
 
 constexpr char SE_HANDLE_PATH[SEtypeMaxNum][64] = {
-	{"data/SE/ƒWƒƒƒ“ƒv.wav"},
-	{"data/SE/UŒ‚(è).wav"},
-	{"data/SE/UŒ‚(‹óU‚è—p).wav"},
+	{"data/SE/ƒWƒƒƒ“ƒv.mp3"},
+	{"data/SE/UŒ‚(Œ•).mp3"},
+	{"data/SE/UŒ‚(‹óU‚è—p).mp3"},
 };
 
 class Sound
