@@ -14,7 +14,6 @@ void SceneTitle::Step()
 	{
 		g_current_scene_ID = Play;
 	}
-
 }
 void SceneTitle::Draw()
 {
